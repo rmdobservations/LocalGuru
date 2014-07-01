@@ -1,0 +1,12 @@
+# Enable rewriting URL's with mod_rewrite
+<IfModule mod_rewrite.c>
+	# Start the rewriting engine!
+	RewriteEngine On
+	# Allow paths that are real
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	# Catch profile action
+	RewriteRule ^([^/\.]+)/?$ index.php?do=$1 [L]
+	# Catch profile action and user
+	RewriteRule ^([^/\.]+)/([^/\.]+)/?$ index.php?do=$1&usr=$2 [L]	
+</IfModule>

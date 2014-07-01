@@ -1,0 +1,70 @@
+#profile_form {	
+	padding: 0;
+	
+	font-family: Helvetica, Verdana, Arial;
+	font-size: 14px;	
+}
+
+#profile_nav_top{
+	margin-bottom: 30px;
+	padding-bottom: 10px;
+	padding-top: 5px;
+}
+
+#profile_nav_bot{
+	margin-top: 30px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
+
+#profile_title {
+	font-size: 16px;
+	font-weight: bold;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+#profile_steps {	
+	margin-bottom: 10px;
+	border-bottom: 1px dotted gray;
+	padding: 10px;
+	color: gray;
+	background-color: #eee;
+}
+
+#profile_steps_selected {
+	font-weight: bold;
+	color: black;
+}
+
+#profile_heading {
+	margin-top: 30px;
+	font-weight: bold;
+}
+
+#profile_label {
+	margin-top: 10px;
+	width: 600px;
+	text-align: justify;
+}
+
+#profile_inputbox {
+	width: 350px;
+}
+
+#profile_textarea {
+	width: 350px;
+	height: 200px;
+}
+#profile_dropdownbox {
+	width: 350px;
+}
+
+#profile_button {
+	margin: 5px;
+	width: 100px;
+}
+
+#profile_checkbox {
+	/* Nothing here right now */
+}

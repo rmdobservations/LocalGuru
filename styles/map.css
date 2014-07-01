@@ -1,0 +1,177 @@
+#map_container {
+	padding: 0;
+	margin: 0;	
+	position: relative;
+	min-height: 100%;
+	height: 100%;
+	width: 100%;
+	font-family: Helvetica, Verdana, Arial;
+}
+
+#map_search_pane {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	overflow: auto;
+	z-index: 1;
+	
+	background-color: white;
+	
+	width: 215px;
+	
+	padding: 0;
+	
+	font-family: Helvetica, Verdana, Arial;
+	font-size: 12px;
+}
+
+#map_search_pane_title {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-family: Helvetica, Verdana, Arial;
+	font-size: 120%;
+	font-weight: bold;
+	padding-bottom: 10px;	
+}
+
+#map_search_pane_label {
+	margin-top: 10px;
+	font-family: Helvetica, Verdana, Arial;
+}
+
+#map_search_pane_button {
+	margin-top: 10px;
+	font-family: Helvetica, Verdana, Arial;
+	width: 200px;
+}
+
+#map_search_pane_inputbox {
+	font-family: Helvetica, Verdana, Arial;
+	width: 193px;
+}
+
+#map_search_pane_checkbox  {
+	font-family: Helvetica, Verdana, Arial;
+}
+
+#map_search_pane_dropdownbox  {
+	font-family: Helvetica, Verdana, Arial;
+	width: 197px;
+}
+
+#map_canvas {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	z-index: 0;
+
+	border: 1px solid gray;
+	
+	padding: 0;
+	margin: 0;
+}
+
+#map_canvas_text_overlay {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	margin: 5px;
+	padding: 5px;
+	z-index: 1;
+
+	font-size: 12px;
+	color: #eee;
+
+	background-color: #333;
+	opacity: 0.8;
+
+	border-radius: 5px;
+}
+
+#map_search_pane_menu {
+	color: #aaa;
+	margin-top: 10px;
+}
+
+/* Markup for URL's */
+#map_search_pane_url a {	
+	text-decoration: none;
+	color: gray;
+	font-size: 12px;
+}
+
+#map_url a:active {
+	text-decoration: none;
+	color: #0085cf;
+	font-size: 12px;
+}
+#map_url a:link {
+	text-decoration: none;
+	color: #0085cf;
+	font-size: 12px;
+}
+#map_url a:visited {
+	text-decoration: none;
+	color: #0085cf;
+	font-size: 12px;
+}
+#map_url a:hover {	
+	text-decoration: none;
+	color: #0085cf;
+	border-bottom: 1px dotted #0085cf;
+	font-size: 12px;
+}
+
+/* Map Balloon */
+#map_balloon {
+	padding: 20px;
+}
+
+#map_balloon_title {
+	font-family: Helvetica, Verdana, Arial;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+#map_balloon_text {
+	font-family: Helvetica, Verdana, Arial;
+	font-size: 12px;
+	width: 300px;
+	margin-right: 20px;
+	text-align: justify;
+}
+
+#map_balloon_text_scroll_y {
+	font-family: Helvetica, Verdana, Arial;
+	font-size: 12px;
+	width: 300px;
+	padding-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: justify;
+	
+	overflow: auto;
+	max-height: 200px;
+}
+
+#map_close_button {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	right: 2px;
+	top: 0px;
+}
+
+p {
+	font-size: 12px;
+	width: 800px;
+	text-align: justify;
+}
+
+h2 {
+	padding-top: 32px;
+	border-bottom: 5px solid gray;
+}
