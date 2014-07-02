@@ -129,7 +129,7 @@ class SearchPane
 	// Generates and returns the HTML that makes up the search-form.
 	public function insert_search_pane()
 	{	
-		$l_pane = '<form name="map_search_form" method="get" action=><div id="map_search_pane_title">Zoek een Linux-hulp</div>';
+		$l_pane = '<form name="map_search_form" method="get" action=""><div id="map_search_pane_title">Zoek een Linux-hulp</div>';
 		
 		// Insert address-field (and fill it with a value if given)		
 		$l_pane .= '<div id="map_search_pane_label">Straat/Postcode/Plaats/Provincie:</div>';
@@ -152,8 +152,8 @@ class SearchPane
 		// submission or clearing the form.
 		$l_pane .= '
 					<div>&nbsp;<input type="hidden" onKeyPress="if ( ( window.event.keyCode == 13 ) || (event.which == 13) ) { this.form.submit(); return false; } return true;" /></div>					
-					<div><input id="map_search_pane_button" value="Zoek" type="submit" title="Zoek een Linux-hulp"></input></div>
-					<div><input id="map_search_pane_button" value="Leeg velden" type="button" title="Leeg alle zoekvelden" onclick="location.href=\''.MAP_URL.'\';" ></input></div>
+					<div><input id="map_search_pane_button" value="Zoek" type="submit" title="Zoek een Linux-hulp"></div>
+					<div><input id="map_search_pane_button" value="Leeg velden" type="button" title="Leeg alle zoekvelden" onclick="location.href=\''.MAP_URL.'\';" ></div>
 					<div>&nbsp;</div>
 				</form>
 		';
@@ -167,13 +167,13 @@ class SearchPane
 		// some future options are present in HTML-comments
 		$l_pane .= '
 			<div id="map_search_pane_menu">
-				<!--<div id="map_url"><a href="'.MAP_URL.'profiel" target="_self" title="Maak een Linux-hulp profiel aan" alt="Maak een Linux-hulp profiel aan">Nieuw profiel aanmaken</a></div>
-				<div id="map_url"><a href="'.MAP_URL.'profiel/inloggen" target="_self" title="Bewerk je Linux-hulp profiel" alt="Bewerk je Linux-hulp profiel">Mijn profiel bewerken</a></div>-->
-				<div id="map_url"><a target="_blanc" href="'.MAP_BIG_URL.$l_query.'" target="_self" title="Open de Buurtlinux kaart in een nieuw venster" alt="Open de Buurtlinux kaart in een nieuw venster">Open in apart venster</a></div>
-				<div id="map_url" onclick="return toggleCollapse(\'toggle_link\')" title="Klik hier om zoek-URL weer te geven of te verbergen" alt="Klik hier om zoek-URL weer te geven of te verbergen"><a href="#">Link naar deze zoekopdracht</a></div>
+				<!--<div id="map_url"><a href="'.MAP_URL.'profiel" target="_self" title="Maak een Linux-hulp profiel aan">Nieuw profiel aanmaken</a></div>
+				<div id="map_url"><a href="'.MAP_URL.'profiel/inloggen" target="_self" title="Bewerk je Linux-hulp profiel">Mijn profiel bewerken</a></div>-->
+				<div id="map_url"><a href="'.MAP_BIG_URL.$l_query.'" target="_self" title="Open de Buurtlinux kaart in een nieuw venster">Open in apart venster</a></div>
+				<div id="map_url" onclick="return toggleCollapse(\'toggle_link\')" title="Klik hier om zoek-URL weer te geven of te verbergen"><a href="#">Link naar deze zoekopdracht</a></div>
 				<div id="toggle_link" style="display: none; margin-top: 15px;"><textarea rows="10" cols="25">'.$l_ref.'</textarea></div>
-				<div id="map_url"><a href="'.MAP_URL.'kaartgebruik" target="_blanc" title="Bekijk de mogelijkheden voor het linken naar of inbedden van deze kaart" alt="Bekijk de mogelijkheden voor het linken naar of embedded van deze kaart">Deze kaart extern gebruiken</a></div>
-<div id="map_url"><a href="'.ROOT_URL.'" target="_self" title="Ga naar de Buurtlinux website" alt="Ga naar de Buurtlinux website">Bezoek de Buurtlinux website</a></div>				
+				<div id="map_url"><a href="'.MAP_URL.'kaartgebruik" target="_blank" title="Bekijk de mogelijkheden voor het linken naar of inbedden van deze kaart">Deze kaart extern gebruiken</a></div>
+<div id="map_url"><a href="'.ROOT_URL.'" target="_self" title="Ga naar de Buurtlinux website">Bezoek de Buurtlinux website</a></div>				
 			</div>
 		';
 		return $l_pane;
@@ -187,11 +187,11 @@ class SearchPane
 		// Check if an address is given
 		if( isset( $_SERVER['search']['address'] ) && ( $_SERVER['search']['address'] != "" ) )
 		{
-			$l_html = '<input type="text" id="map_search_pane_inputbox" name="address" value="'.$_SERVER['search']['address'].'"></input>';
+			$l_html = '<input type="text" id="map_search_pane_inputbox" name="address" value="'.$_SERVER['search']['address'].'">';
 		}
 		else
 		{
-			$l_html = '<input type="text" id="map_search_pane_inputbox" name="address"></input>';
+			$l_html = '<input type="text" id="map_search_pane_inputbox" name="address">';
 		}
 		return $l_html;	
 	}
@@ -318,7 +318,7 @@ class SearchPane
 		// If there are any, add them to the search criterium field
 		if ( count( $l_criteria ) )
 		{	
-			$l_html = '<div id="map_search_pane_label" onclick="return toggleCollapse(\'toggle_distros\')" title="Klik hier om de opties in/uit te klappen" alt="Klik hier om de opties in/uit te klappen"><img src="'.MAP_URL.'img/ingeklapt.gif" id="img_toggle_distros"></img>Distributies</div>';
+			$l_html = '<div id="map_search_pane_label" onclick="return toggleCollapse(\'toggle_distros\')" title="Klik hier om de opties in/uit te klappen"><img src="'.MAP_URL.'img/ingeklapt.gif" id="img_toggle_distros" alt="Klik hier om de opties in/uit te klappen">Distributies</div>';
 			$l_html .= '<div id="toggle_distros" style="display: none">';
 
 			// Check for active user search criteria
@@ -344,7 +344,7 @@ class SearchPane
 						}
 					}
 				}
-				$l_html .= '<input id="map_search_pane_checkbox" type=checkbox '.$l_checked.' name="distros[]" value="'.$l_pair['name'].'">'.$l_pair['name'].'</input><br>';
+				$l_html .= '<input id="map_search_pane_checkbox" type=checkbox '.$l_checked.' name="distros[]" value="'.$l_pair['name'].'">'.$l_pair['name'].'<br>';
 			}
 			$l_html .= '<div>&nbsp;</div></div>';
 		}		
@@ -364,7 +364,7 @@ class SearchPane
 		// If there are any, add them to the search criterium field
 		if ( count( $l_criteria ) )
 		{
-			$l_html =  '<div id="map_search_pane_label" onclick="return toggleCollapse(\'toggle_desktops\')" title="Klik hier om de opties in/uit te klappen" alt="Klik hier om de opties in/uit te klappen"><img src="'.MAP_URL.'img/ingeklapt.gif" id="img_toggle_desktops"></img>Bureaublad-omgevingen</div>';
+			$l_html =  '<div id="map_search_pane_label" onclick="return toggleCollapse(\'toggle_desktops\')" title="Klik hier om de opties in/uit te klappen"><img src="'.MAP_URL.'img/ingeklapt.gif" id="img_toggle_desktops" alt="Klik hier om de opties in/uit te klappen">Bureaublad-omgevingen</div>';
 			$l_html .= '<div id="toggle_desktops" style="display: none">';
 
 			// Check for active user search criteria
@@ -390,7 +390,7 @@ class SearchPane
 						}
 					}
 				}
-				$l_html .= '<input id="map_search_pane_checkbox" type=checkbox '.$l_checked.' name="desktops[]" value="'.$l_pair['name'].'">'.$l_pair['name'].'</input><br>';
+				$l_html .= '<input id="map_search_pane_checkbox" type=checkbox '.$l_checked.' name="desktops[]" value="'.$l_pair['name'].'">'.$l_pair['name'].'<br>';
 			}
 			$l_html .= '<div>&nbsp;</div></div>';
 		}
@@ -410,7 +410,7 @@ class SearchPane
 		// If there are any, add them to the search criterium field
 		if ( count( $l_criteria ) )
 		{
-			$l_html =  '<div id="map_search_pane_label" onclick="return toggleCollapse(\'toggle_actions\')" title="Klik hier om de opties in/uit te klappen" alt="Klik hier om de opties in/uit te klappen"><img src="'.MAP_URL.'img/ingeklapt.gif" id="img_toggle_actions"></img>Onderwerpen</div>';
+			$l_html =  '<div id="map_search_pane_label" onclick="return toggleCollapse(\'toggle_actions\')" title="Klik hier om de opties in/uit te klappen"><img src="'.MAP_URL.'img/ingeklapt.gif" id="img_toggle_actions" alt="Klik hier om de opties in/uit te klappen">Onderwerpen</div>';
 			$l_html .= '<div id="toggle_actions" style="display: none">';
 
 			// Check for active user search criteria
@@ -436,7 +436,7 @@ class SearchPane
 						}
 					}
 				}
-				$l_html .= '<input id="map_search_pane_checkbox" type="checkbox" '.$l_checked.' name="actions[]" value="'.$l_pair['name'].'">'.$l_pair['name'].'</input><br>';
+				$l_html .= '<input id="map_search_pane_checkbox" type="checkbox" '.$l_checked.' name="actions[]" value="'.$l_pair['name'].'">'.$l_pair['name'].'<br>';
 			}
 			$l_html .= '<div>&nbsp;</div></div>';
 		}
@@ -456,7 +456,7 @@ class SearchPane
 		// If there are any, add them to the search criterium field
 		if ( count( $l_criteria ) )
 		{			
-			$l_html =  '<div id="map_search_pane_label" onclick="return toggleCollapse(\'toggle_groups\')" title="Klik hier om de opties in/uit te klappen" alt="Klik hier om de opties in/uit te klappen"><img src="'.MAP_URL.'img/ingeklapt.gif" id="img_toggle_groups"></img>Hulp van</div>';
+			$l_html =  '<div id="map_search_pane_label" onclick="return toggleCollapse(\'toggle_groups\')" title="Klik hier om de opties in/uit te klappen"><img src="'.MAP_URL.'img/ingeklapt.gif" id="img_toggle_groups" alt="Klik hier om de opties in/uit te klappen">Hulp van</div>';
 			$l_html .= '<div id="toggle_groups" style="display: none"><select id="map_search_pane_dropdownbox" name="groups[]">';			
 			$l_html .= '<option value="">Wie dan ook</option>';
 
@@ -502,7 +502,7 @@ class SearchPane
 		// If there are any, add them to the search criterium field
 		if ( count( $l_criteria ) )
 		{
-			$l_html =  '<div id="map_search_pane_label" onclick="return toggleCollapse(\'toggle_targetgrps\')" title="Klik hier om de opties in/uit te klappen" alt="Klik hier om de opties in/uit te klappen"><img src="'.MAP_URL.'img/ingeklapt.gif" id="img_toggle_targetgrps"></img>Hulp aan</div>';
+			$l_html =  '<div id="map_search_pane_label" onclick="return toggleCollapse(\'toggle_targetgrps\')" title="Klik hier om de opties in/uit te klappen"><img src="'.MAP_URL.'img/ingeklapt.gif" id="img_toggle_targetgrps" alt="Klik hier om de opties in/uit te klappen">Hulp aan</div>';
 			$l_html .= '<div id="toggle_targetgrps" style="display: none"><select id="map_search_pane_dropdownbox" name="targets[]">';
 			$l_html .= '<option value="">Iedereen</option>';
 
@@ -548,7 +548,7 @@ class SearchPane
 		// If there are any, add them to the search criterium field		
 		if ( count( $l_criteria ) )
 		{
-			$l_html =  '<div id="map_search_pane_label" onclick="return toggleCollapse(\'toggle_rewards\')" title="Klik hier om de opties in/uit te klappen" alt="Klik hier om de opties in/uit te klappen"><img src="'.MAP_URL.'img/ingeklapt.gif" id="img_toggle_rewards"></img>Beloning</div>';
+			$l_html =  '<div id="map_search_pane_label" onclick="return toggleCollapse(\'toggle_rewards\')" title="Klik hier om de opties in/uit te klappen"><img src="'.MAP_URL.'img/ingeklapt.gif" id="img_toggle_rewards" alt="Klik hier om de opties in/uit te klappen">Beloning</div>';
 			$l_html .= '<div id="toggle_rewards" style="display: none">';
 
 			// Check for active user search criteria
@@ -574,7 +574,7 @@ class SearchPane
 						}
 					}
 				}
-				$l_html .= '<input id="map_search_pane_checkbox" type=checkbox '.$l_checked.' name="rewards[]" value="'.$l_pair['name'].'">'.$l_pair['name'].'</input><br>';
+				$l_html .= '<input id="map_search_pane_checkbox" type=checkbox '.$l_checked.' name="rewards[]" value="'.$l_pair['name'].'">'.$l_pair['name'].'<br>';
 			}
 			$l_html .= '</div>';
 		}		

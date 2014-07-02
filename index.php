@@ -199,13 +199,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		if ( $_SERVER['search']['showpane'] )
 		{
 			print '<div id="map_canvas" style="margin-left:215px"></div>';
-			print '<div id="map_canvas_text_overlay" style="margin-left:215px">Data by <span id="map_url"><a target="_blanc" href="http://www.openstreetmap.org/">OpenStreetMap.org</a></span> contributors under CC <span id="map_url"><a target="_blanc" href="http://creativecommons.org/licenses/by-sa/2.0/">BY-SA 2.0</a></span> license.</div>';
+			print '<div id="map_canvas_text_overlay" style="margin-left:215px">Data by <span id="map_url"><a target="_blank" href="http://www.openstreetmap.org/">OpenStreetMap.org</a></span> contributors under CC <span id="map_url"><a target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">BY-SA 2.0</a></span> license.</div>';
 			print '<div id="map_search_pane">'.$l_search_pane->insert_search_pane().'</div>'; 
 		}
 		else
 		{
 			print '<div id="map_canvas"></div>';
-			print '<div id="map_canvas_text_overlay"><span id="map_url">Data by <span id="map_url"><a target="_blanc" href="http://www.openstreetmap.org/">OpenStreetMap.org</a></span> contributors under CC <span id="map_url"><a target="_blanc" href="http://creativecommons.org/licenses/by-sa/2.0/">BY-SA 2.0</a></span> license.</div>';
+			print '<div id="map_canvas_text_overlay">Data by <span id="map_url"><a target="_blank" href="http://www.openstreetmap.org/">OpenStreetMap.org</a></span> contributors under CC <span id="map_url"><a target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">BY-SA 2.0</a></span> license.</div>';
 		}
 
 ?>
