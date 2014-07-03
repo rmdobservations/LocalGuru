@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b7e567b58cc51c48b5f30aad72e6f7ca",
+    "hash": "2e0c7bfdacb4865ca020a6c47aff57b7",
     "packages": [
         {
             "name": "phpmailer/phpmailer",
