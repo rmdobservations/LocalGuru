@@ -1,5 +1,5 @@
 <?php
-	require_once('../settings.php');
+	require_once dirname(__DIR__).'/lib/init.php';
 ?>
 
 /***************************************************************************
@@ -63,7 +63,7 @@ function load_buurtlinux_layer() {
 		// criteria.
 		require_once('../lib/linux_helpers.php');
 		$l_helpers = new LinuxHelpers();
-		$l_helpers->process_search_criteria( $_GET['distros'], $_GET['desktops'], $_GET['actions'], $_GET['groups'], $_GET['targets'], $_GET['rewards'] );
+		$l_helpers->process_search_criteria( $search['distros'], $search['desktops'], $search['actions'], $search['groups'], $search['targets'], $search['rewards'] );
 		$l_selection = $l_helpers->select_helpers();
 		$l_first_marker = true;
 	
@@ -181,19 +181,19 @@ function geocode_focus_point() {
 <?php	
 	// Obtain address and radius parameters if given. If not use the javascript
 	// defaults.
-	if( isset( $_GET['address'] ) && $_GET['address'] != "" )
+	if( isset( $search['address'] ) && $search['address'] != "" )
 	{
-		print "g_address = '".$_GET['address']."';\n";
+		print "g_address = '".$search['address']."';\n";
 	}
-	if( isset( $_GET['radius'] ) && $_GET['radius'] != "" )
+	if( isset( $search['radius'] ) && $search['radius'] != "" )
 	{
-		print "g_radius = '".$_GET['radius']."';\n";		
+		print "g_radius = '".$search['radius']."';\n";
 	}
-	if( isset( $_GET['country'] ) && $_GET['country'] != "" )
+	if( isset( $search['country'] ) && $search['country'] != "" )
 	{
-		print "g_countrycode = '".$_GET['country']."';\n";
+		print "g_countrycode = '".$search['country']."';\n";
 	}
-?>	
+?>
 	// URL that queries the Nominatim search engine for nodes, ways, relations etc.
 	// Limit the results to 1 at maximum
 	var l_nominatim_url = 	'http://nominatim.openstreetmap.org/search?q='+

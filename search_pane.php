@@ -26,7 +26,6 @@ if ( strpos($_SERVER["REQUEST_URI"], constant("PAGE") ) ) {
 	die("Het lezen van '".constant("PAGE")."' is niet toegestaan, sorry!");
 }
 
-require_once('settings.php');
 require_once('lib/db_lookup_criteria.php');
 
 class SearchPane
@@ -159,22 +158,24 @@ class SearchPane
 		';
 		
 		// Get PHP arguments from address line		
-		$l_query = strstr($_SERVER["REQUEST_URI"], "?");
-		$l_ref = MAP_WP_URL.$l_query;
-		$l_ref = urldecode($l_ref);
+#FIXME: this is not clean
+#		$l_query = strstr($_SERVER["REQUEST_URI"], "?");
+#		$l_ref = MAP_WP_URL.$l_query;
+#		$l_ref = urldecode($l_ref);
 
 		// Add URL's for registration, saving search string and more. Note that
 		// some future options are present in HTML-comments
 		$l_pane .= '
-			<div id="map_search_pane_menu">
-				<!--<div id="map_url"><a href="'.MAP_URL.'profiel" target="_self" title="Maak een Linux-hulp profiel aan">Nieuw profiel aanmaken</a></div>
-				<div id="map_url"><a href="'.MAP_URL.'profiel/inloggen" target="_self" title="Bewerk je Linux-hulp profiel">Mijn profiel bewerken</a></div>-->
-				<div id="map_url"><a href="'.MAP_BIG_URL.$l_query.'" target="_self" title="Open de Buurtlinux kaart in een nieuw venster">Open in apart venster</a></div>
-				<div id="map_url" onclick="return toggleCollapse(\'toggle_link\')" title="Klik hier om zoek-URL weer te geven of te verbergen"><a href="#">Link naar deze zoekopdracht</a></div>
-				<div id="toggle_link" style="display: none; margin-top: 15px;"><textarea rows="10" cols="25">'.$l_ref.'</textarea></div>
-				<div id="map_url"><a href="'.MAP_URL.'kaartgebruik" target="_blank" title="Bekijk de mogelijkheden voor het linken naar of inbedden van deze kaart">Deze kaart extern gebruiken</a></div>
-<div id="map_url"><a href="'.ROOT_URL.'" target="_self" title="Ga naar de Buurtlinux website">Bezoek de Buurtlinux website</a></div>				
-			</div>
+			<div id="map_search_pane_menu">';
+#FIXME: create sane url's, not vunerable to XSS
+#				<!--<div id="map_url"><a href="'.MAP_URL.'profiel" target="_self" title="Maak een Linux-hulp profiel aan">Nieuw profiel aanmaken</a></div>
+#				<div id="map_url"><a href="'.MAP_URL.'profiel/inloggen" target="_self" title="Bewerk je Linux-hulp profiel">Mijn profiel bewerken</a></div>-->
+#				<div id="map_url"><a href="'.MAP_BIG_URL.$l_query.'" target="_self" title="Open de Buurtlinux kaart in een nieuw venster">Open in apart venster</a></div>
+#				<div id="map_url" onclick="return toggleCollapse(\'toggle_link\')" title="Klik hier om zoek-URL weer te geven of te verbergen"><a href="#">Link naar deze zoekopdracht</a></div>
+#				<div id="toggle_link" style="display: none; margin-top: 15px;"><textarea rows="10" cols="25">'.$l_ref.'</textarea></div>
+#				<div id="map_url"><a href="'.MAP_URL.'kaartgebruik" target="_blank" title="Bekijk de mogelijkheden voor het linken naar of inbedden van deze kaart">Deze kaart extern gebruiken</a></div>
+		$l_pane .= '	<div id="map_url"><a href="'.ROOT_URL.'" target="_self" title="Ga naar de Buurtlinux website">Bezoek de Buurtlinux website</a></div>
+				</div>
 		';
 		return $l_pane;
 	}
@@ -184,10 +185,11 @@ class SearchPane
 	// last known address or empty.
 	protected function insert_address()
 	{		
+		global $search;
 		// Check if an address is given
-		if( isset( $_SERVER['search']['address'] ) && ( $_SERVER['search']['address'] != "" ) )
+		if( isset( $search['address'] ) && ( $search['address'] != "" ) )
 		{
-			$l_html = '<input type="text" id="map_search_pane_inputbox" name="address" value="'.$_SERVER['search']['address'].'">';
+			$l_html = '<input type="text" id="map_search_pane_inputbox" name="address" value="'.$search['address'].'">';
 		}
 		else
 		{
@@ -201,11 +203,12 @@ class SearchPane
 	// radius selected or none.
 	protected function insert_radius()
 	{
+		global $search;
 		// Open drop-down box
 		$l_html = '<select id="map_search_pane_dropdownbox" name="radius">';
 		
 		// Get radius variable and get ready to see if and which radius is given
-		$l_radius = $_SERVER['search']['radius'];
+		$l_radius = $search['radius'];
 		$l_opts = "";
 		$l_found_radius = false;
 		
@@ -311,6 +314,8 @@ class SearchPane
 	// known distribution(s) selected or none.
 	protected function insert_distros()
 	{
+		global $search;
+
 		// Obtain the available distributions from the database
 		$l_db_access = new CriteriaLookup();
 		$l_criteria = $l_db_access->get_distros_criteria("");		
@@ -323,9 +328,9 @@ class SearchPane
 
 			// Check for active user search criteria
 			$l_selection = NULL;
-			if( isset( $_SERVER['search']['distros']) )
+			if( isset( $search['distros']) )
 			{
-				$l_selection = explode(",", $_SERVER['search']['distros'] );
+				$l_selection = explode(",", $search['distros'] );
 			}
 
 			// Add all available distributions to the search criterium field and
@@ -357,6 +362,8 @@ class SearchPane
 	// last known desktop environment(s) selected or none.
 	protected function insert_desktops()
 	{
+		global $search;
+
 		// Obtain the available desktop environments from the database
 		$l_db_access = new CriteriaLookup();
 		$l_criteria = $l_db_access->get_desktops_criteria("");		
@@ -369,9 +376,9 @@ class SearchPane
 
 			// Check for active user search criteria
 			$l_selection = NULL;
-			if( isset( $_SERVER['search']['desktops']) )
+			if( isset( $search['desktops']) )
 			{				
-				$l_selection = explode(",", $_SERVER['search']['desktops'] );
+				$l_selection = explode(",", $search['desktops'] );
 			}
 
 			// Add all available desktop environments to the search criterium 
@@ -415,9 +422,9 @@ class SearchPane
 
 			// Check for active user search criteria
 			$l_selection = NULL;
-			if( isset( $_SERVER['search']['actions']) )
+			if( isset( $search['actions']) )
 			{
-				$l_selection = explode(",", $_SERVER['search']['actions'] );
+				$l_selection = explode(",", $search['actions'] );
 			}
 
 			// Add all available help actions to the search criterium field and
@@ -449,6 +456,8 @@ class SearchPane
 	// last known helper group(s) selected or none.
 	protected function insert_groups()
 	{
+		global $search;
+
 		// Obtain the available helper groups from the database
 		$l_db_access = new CriteriaLookup();
 		$l_criteria = $l_db_access->get_usergroups_criteria("");
@@ -462,9 +471,9 @@ class SearchPane
 
 			// Check for active user search criteria
 			$l_selection = NULL;
-			if( isset( $_SERVER['search']['groups']) ) 
+			if( isset( $search['groups']) ) 
 			{
-				$l_selection = explode(",", $_SERVER['search']['groups'] );
+				$l_selection = explode(",", $search['groups'] );
 			}
 
 			// Add all available helper groups to the search criterium field and
@@ -495,6 +504,7 @@ class SearchPane
 	// last known target group(s) selected or none.	
 	protected function insert_targetgrps()
 	{
+		global $search;
 		// Obtain the available target groups from the database
 		$l_db_access = new CriteriaLookup();
 		$l_criteria = $l_db_access->get_targetgroups_criteria("");
@@ -508,9 +518,9 @@ class SearchPane
 
 			// Check for active user search criteria
 			$l_selection = NULL;
-			if( isset( $_SERVER['search']['targets']) )
+			if( isset( $search['targets']) )
 			{
-				$l_selection = explode(",", $_SERVER['search']['targets'] );
+				$l_selection = explode(",", $search['targets'] );
 			}
 
 			// Add all available target groups to the search criterium field and
@@ -541,6 +551,8 @@ class SearchPane
 	// last known reward type(s) selected or none.	
 	protected function insert_rewards()
 	{
+		global $search;
+
 		// Obtain the available reward types from the database
 		$l_db_access = new CriteriaLookup();
 		$l_criteria = $l_db_access->get_rewards_criteria("");
@@ -553,9 +565,9 @@ class SearchPane
 
 			// Check for active user search criteria
 			$l_selection = NULL;
-			if( isset( $_SERVER['search']['rewards']) )
+			if( isset( $search['rewards']) )
 			{
-				$l_selection = explode(",", $_SERVER['search']['rewards'] );
+				$l_selection = explode(",", $search['rewards'] );
 			}
 
 			// Add all available reward types to the search criterium field and

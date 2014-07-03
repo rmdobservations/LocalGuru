@@ -21,8 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***************************************************************************/
 
 	session_start();
-
-	require_once('settings.php');
+	
+	require_once __DIR__.'lib/init.php';
 ?>
 
 <!DOCTYPE html>
@@ -66,13 +66,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				// Pass on any address-line arguments to the embedded page.
 				$l_query = MAP_URL.strstr($_SERVER["REQUEST_URI"], "?");
 				print "<iframe frameborder='0' marginwidth='0' marginheight='0' src='".$l_query."' style='width: 100%; height: 100%;'>
-					Je browser ondersteunt geen Iframe. Bezoek de <a target='_blanc' alt='Bezoek de oorspronkelijke website' title='Bezoek de oorspronkelijke website' href='".MAP_URL."index.php'>oorspronkelijke website</a>
+					Je browser ondersteunt geen Iframe. Bezoek de <a target='_blank' alt='Bezoek de oorspronkelijke website' title='Bezoek de oorspronkelijke website' href='".MAP_URL."index.php'>oorspronkelijke website</a>
 				</iframe>";
 			?>
 
 		</div>
 
 		<!-- Bottom cell -->
-		<div style="height: 20px; position: absolute; bottom: 0px; padding-left: 235px; font-size: 10px;">&copy Buurtlinux</div>
+		<div style="height: 20px; position: absolute; bottom: 0px; padding-left: 235px; font-size: 10px;">&copy; Buurtlinux</div>
 	</body>
 </html>
