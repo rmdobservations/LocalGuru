@@ -26,7 +26,7 @@ if ( strpos($_SERVER["REQUEST_URI"], constant("PAGE") ) ) {
 	die("Het lezen van '".constant("PAGE")."' is niet toegestaan, sorry!");
 }
 
-require_once('lib/db_lookup_criteria.php');
+require_once LIBDIR.'/db_lookup_criteria.php';
 
 class SearchPane
 {

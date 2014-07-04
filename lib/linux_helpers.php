@@ -20,8 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ***************************************************************************/
 
-require_once('../settings.php');
-require_once('db_lookup_users.php');
+require_once LIBDIR.'/db_lookup_users.php';
 
 // This class forms the interface to the tables that contain
 // the search-criteria

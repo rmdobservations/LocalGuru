@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	/* Start a PHP session */
 	session_start();
 
-	require_once('settings.php');
+	require_once __DIR__.'/lib/init.php';
 	
 	$l_error['type'] = "DEFAULT";
 	
@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	if( isset($_GET['user']) && ($_GET['user'] != "") && 
 		 !isset( $_SESSION['email']['destination']['valid'] ) )
 	{	
-		require_once('lib/db_lookup_users.php');
+		require_once LIBDIR.'/db_lookup_users.php';
 		$l_lookup = new UsersLookup();
 		$l_user = $l_lookup->get_user_byid( $_GET['user'] );		
 		if( is_array($l_user) ) {			
@@ -79,7 +79,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				$l_from_subject = "Buurtlinux - ".$_POST['subject'];
 				$l_from_message = $_POST['message'];
 				
-				require_once("3rdparty/class.phpmailer.php");
+				#require_once("3rdparty/class.phpmailer.php");
 				
 				try {
 					$l_mail = new PHPmailer(); 			

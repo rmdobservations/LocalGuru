@@ -61,7 +61,7 @@ function load_buurtlinux_layer() {
 	<?php
 		// Obtain the linux-helpers that were selected based on the search 
 		// criteria.
-		require_once('../lib/linux_helpers.php');
+		require_once LIBDIR.'/linux_helpers.php';
 		$l_helpers = new LinuxHelpers();
 		$l_helpers->process_search_criteria( $search['distros'], $search['desktops'], $search['actions'], $search['groups'], $search['targets'], $search['rewards'] );
 		$l_selection = $l_helpers->select_helpers();

@@ -20,8 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ***************************************************************************/
 
-	require_once('settings.php');
-	require_once('lib/db_lookup_criteria.php');
+	require_once __DIR__.'/lib/init.php');
+	require_once LIBDIR.'/db_lookup_criteria.php';
 ?>
 
 <!DOCTYPE html>

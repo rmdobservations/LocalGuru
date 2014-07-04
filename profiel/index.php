@@ -2,8 +2,8 @@
 	/* Start a PHP session */
 	session_start();
 
-	require_once('../settings.php');
-	require_once('../lib/db_access.php');
+	require_once dirname(__DIR__).'/lib/init.php';
+	require_once LIBDIR.'/db_access.php';
 
 	$_SESSION['form_feedback_msg'] = "";
 	

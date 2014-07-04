@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ***************************************************************************/
 
-require_once('db_access.php');
+require_once LIBDIR.'/db_access.php';
 
 // This class forms the interface to the tables that contain the search-criteria
 class CriteriaLookup

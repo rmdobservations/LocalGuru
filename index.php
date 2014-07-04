@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	// Construct a search-pane if the user requests so
 	if ( $search['showpane'] ) 
 	{
-		require_once('search_pane.php');
+		require_once __DIR__.'/search_pane.php';
 		$l_search_pane = new SearchPane();
 
 		// The user might have specified to show only a few search-criteria to

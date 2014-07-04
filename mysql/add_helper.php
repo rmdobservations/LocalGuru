@@ -23,8 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	// I want to use session variables
 	session_start();
 
-	require_once('../settings.php');	
-	require_once('../lib/db_lookup_criteria.php');
+	require_once dirname(__DIR__).'/lib/init.php';
+	require_once LIBDIR.'/db_lookup_criteria.php';
 	
 	function process_form_data() {
 		$l_result = false;
